@@ -1,0 +1,44 @@
+﻿@model List<Bakalarska_prace.Models.Entities.Files>
+
+@{
+    ViewData["Title"] = "Select File";
+}
+<div class="text-center">
+    <div class="element">
+        <h1 class="display-4">My Files</h1>
+    </div>
+</div>
+
+<a asp-action="Upload">Upload File</a>
+@{
+    if (Model != null && Model.Count > 0)
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">File Name</th>
+                    <th scope="col">Path</th>
+                    <th scope="col">Export</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @{
+                    foreach (var files in Model)
+                    {
+                        <tr>
+                            <td>@files.NameFile</td>
+                            <td>@files.Path</td>
+                            <td><a asp-action="Export" asp-controller="@ViewBag.objectController" asp-area="@ViewBag.objectArea" asp-route-objectId="@ViewBag.objectId" asp-route-fileId="@files.Id">Export</a></td>
+                        </tr>
+                    }
+                }
+
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <h2>Tabulka Files je prázdná</h2>
+    }
+}

@@ -1,0 +1,46 @@
+﻿@model List<Bakalarska_prace.Models.Entities.Files>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<div class="text-center">
+    <div class="element">
+        <h1 class="display-4">My Files</h1>
+    </div>
+</div>
+<a asp-action="Create">Upload File</a>
+
+@{
+    if (Model != null && Model.Count > 0)
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">File Name</th>
+                    <th scope="col">Path</th>
+                    <th scope="col">Edit</th>
+                    <th scope="col">Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @{
+                    foreach (var files in Model)
+                    {
+                        <tr>
+                            <td>@files.NameFile</td>
+                            <th scope="row">@files.Path</th>
+                            <td><a asp-action="Edit" asp-route-ID="@files.Id">Edit</a></td>
+                            <td><a asp-action="Delete" asp-route-ID="@files.Id">Delete</a></td>
+                        </tr>
+                    }
+                }
+
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <h2>Tabulka Files je prázdná</h2>
+    }
+}

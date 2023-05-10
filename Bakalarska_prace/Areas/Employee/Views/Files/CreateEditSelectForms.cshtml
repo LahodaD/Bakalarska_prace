@@ -1,0 +1,34 @@
+﻿@model Files
+<form asp-action="@ViewBag.Akce" method="post" enctype="multipart/form-data">
+    @{
+        if (ViewBag.Akce == "Edit")
+        {
+            <input type="hidden" asp-for="Id" />
+        }
+    }
+    <div asp-validation-summary="All"></div>
+    <div class="form-group">
+        <label>File</label>
+        @{
+            if (ViewBag.Akce == "Edit")
+            {
+                <input asp-for="_File" class="form-control-file">
+            }
+            else if (ViewBag.Akce == "Upload")
+            {
+                <input asp-for="_File" class="form-control-file" data-val="true" data-val-required="The File field is required.">
+            }
+            else
+            {
+                <input asp-for="_File" class="form-control-file" data-val="true" data-val-required="The File field is required.">
+            }
+        }
+        <span asp-validation-for="_File" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label>Name</label>
+        <input asp-for="NameFile" class="form-control" placeholder="Enter File Name">
+        <span asp-validation-for="NameFile" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>

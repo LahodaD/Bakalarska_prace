@@ -1,0 +1,50 @@
+﻿@model Sales
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="element">
+    <h1>Details Sales</h1>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.User_id)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.User_id)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Customers_id)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Customers_id)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Cars_id)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Cars_id)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Sale_date)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Sale_date)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+    </dl>
+</div>
+<div>
+    <form asp-action="Select" asp-controller="Files" asp-area="Employee" asp-route-objectId="@Model.Id" asp-route-objectArea="Employee" asp-route-objectController="Sales" enctype="multipart/form-data">
+        <button type="submit" class="btn btn-primary">Export To Template</button>
+    </form>
+</div>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

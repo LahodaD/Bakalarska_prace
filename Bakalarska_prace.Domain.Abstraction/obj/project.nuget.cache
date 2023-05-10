@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "qOeziungWp8qTuKQc2pdhbtsd/IRRc0URK4bGk+AsWB5jNBsyUTYMXvANu+jZtMrqbUMs2iUL8Zz2NC4QYVu8A==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\dlahoda\\Documents\\UTB\\BAKALARKA\\Bakalarska_prace\\Bakalarska_prace.Domain.Abstraction\\Bakalarska_prace.Domain.Abstraction.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\dlahoda\\.nuget\\packages\\microsoft.aspnetcore.http.features\\5.0.17\\microsoft.aspnetcore.http.features.5.0.17.nupkg.sha512",
+    "C:\\Users\\dlahoda\\.nuget\\packages\\microsoft.extensions.primitives\\5.0.1\\microsoft.extensions.primitives.5.0.1.nupkg.sha512",
+    "C:\\Users\\dlahoda\\.nuget\\packages\\system.io.pipelines\\5.0.2\\system.io.pipelines.5.0.2.nupkg.sha512"
+  ],
+  "logs": []
+}

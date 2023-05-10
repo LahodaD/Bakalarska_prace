@@ -1,0 +1,52 @@
+﻿@model Tuple<Cars, FileViewModel>
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="element">
+    <h1>Details Car</h1>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Item1.VehicleBrand)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Item1.VehicleBrand)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Item1.Price)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Item1.Price)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Item1.Description)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Item1.Description)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Item1.Model)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Item1.Model)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Item1.CreateYear)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Item1.CreateYear)
+        </dd>
+    </dl>
+</div>
+<div>
+    <form asp-action="Select" asp-controller="Files" asp-area="Employee" asp-route-objectId="@Model.Item1.Id" asp-route-objectArea="Employee" asp-route-objectController="Cars" enctype="multipart/form-data">
+        <button type="submit" class="btn btn-primary">Export To Template</button>
+    </form>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Item1.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
+

@@ -1,0 +1,21 @@
+﻿@model Files
+@{
+    ViewData["Title"] = "Upload Files";
+    ViewBag.Akce = "Create";
+}
+
+<div class="text-center">
+    <div class="element">
+        <h1>@ViewData["Title"]</h1>
+        
+    </div>
+</div>
+<div>
+    <partial name="CreateEditSelectForms" model="Model" />
+</div>
+
+@section Scripts
+{
+    <partial name="_ValidationScriptsPartial" />
+    <script src="~/js/FileValidationScript.js"></script>
+}

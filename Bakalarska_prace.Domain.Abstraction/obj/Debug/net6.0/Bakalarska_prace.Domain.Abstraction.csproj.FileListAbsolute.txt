@@ -1,0 +1,12 @@
+C:\Users\dlahoda\Documents\UTB\BAKALARKA\Bakalarska_prace\Bakalarska_prace.Domain.Abstraction\bin\Debug\net6.0\Bakalarska_prace.Domain.Abstraction.deps.json
+C:\Users\dlahoda\Documents\UTB\BAKALARKA\Bakalarska_prace\Bakalarska_prace.Domain.Abstraction\bin\Debug\net6.0\Bakalarska_prace.Domain.Abstraction.dll
+C:\Users\dlahoda\Documents\UTB\BAKALARKA\Bakalarska_prace\Bakalarska_prace.Domain.Abstraction\bin\Debug\net6.0\Bakalarska_prace.Domain.Abstraction.pdb
+C:\Users\dlahoda\Documents\UTB\BAKALARKA\Bakalarska_prace\Bakalarska_prace.Domain.Abstraction\obj\Debug\net6.0\Bakalarska_prace.Domain.Abstraction.csproj.AssemblyReference.cache
+C:\Users\dlahoda\Documents\UTB\BAKALARKA\Bakalarska_prace\Bakalarska_prace.Domain.Abstraction\obj\Debug\net6.0\Bakalarska_prace.Domain.Abstraction.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\dlahoda\Documents\UTB\BAKALARKA\Bakalarska_prace\Bakalarska_prace.Domain.Abstraction\obj\Debug\net6.0\Bakalarska_prace.Domain.Abstraction.AssemblyInfoInputs.cache
+C:\Users\dlahoda\Documents\UTB\BAKALARKA\Bakalarska_prace\Bakalarska_prace.Domain.Abstraction\obj\Debug\net6.0\Bakalarska_prace.Domain.Abstraction.AssemblyInfo.cs
+C:\Users\dlahoda\Documents\UTB\BAKALARKA\Bakalarska_prace\Bakalarska_prace.Domain.Abstraction\obj\Debug\net6.0\Bakalarska_prace.Domain.Abstraction.csproj.CoreCompileInputs.cache
+C:\Users\dlahoda\Documents\UTB\BAKALARKA\Bakalarska_prace\Bakalarska_prace.Domain.Abstraction\obj\Debug\net6.0\Bakalarska_prace.Domain.Abstraction.dll
+C:\Users\dlahoda\Documents\UTB\BAKALARKA\Bakalarska_prace\Bakalarska_prace.Domain.Abstraction\obj\Debug\net6.0\refint\Bakalarska_prace.Domain.Abstraction.dll
+C:\Users\dlahoda\Documents\UTB\BAKALARKA\Bakalarska_prace\Bakalarska_prace.Domain.Abstraction\obj\Debug\net6.0\Bakalarska_prace.Domain.Abstraction.pdb
+C:\Users\dlahoda\Documents\UTB\BAKALARKA\Bakalarska_prace\Bakalarska_prace.Domain.Abstraction\obj\Debug\net6.0\ref\Bakalarska_prace.Domain.Abstraction.dll
