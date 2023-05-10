@@ -13,28 +13,6 @@ namespace Bakalarska_prace.Services
             _dbContex = dbContex;
         }
 
-        public List<string> FindCellsName()
-        {
-            List<string> namesList = new List<string>();
-            using (var package = new ExcelPackage(new FileInfo("C:\\Users\\dlahoda\\Documents\\UTB\\BAKALARKA\\Sešit1.xlsx")))
-            {
-                // Získání aktuálního sešitu
-                var workbook = package.Workbook;
-
-                // Procházení všech pojmenovaných oblastí ve všech listech sešitu
-                foreach (var namedRange in workbook.Names)
-                {
-                    // Získání názvu pojmenované oblasti
-                    var namedRangeName = namedRange.Name;
-
-                    // Použití názvu pojmenované oblasti podle potřeby (např. výpis do konzole)
-                    Console.WriteLine($"Název pojmenované oblasti: {namedRangeName}");
-                    namesList.Add(namedRangeName);
-                }
-            }
-            return namesList;
-        }
-
         public object getValueByFieldName(string cellName, Object obj)
         {
             FieldInfo[] fieldsInfo = obj.GetType().GetFields(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
