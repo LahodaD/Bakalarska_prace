@@ -73,47 +73,75 @@ namespace Bakalarska_prace.Areas.Employee.Controllers
         {
             string fileName = "Customer_PDF.pdf";
 
-            string newPath = _fileUpload.CopyFileForExport(Path.Combine("files", "sale", "pdf"), fileName, filePath);
+            try
+            {
+                string newPath = _fileUpload.CopyFileForExport(Path.Combine("files", "sale", "pdf"), fileName, filePath);
 
-            string contentType = "application/pdf";
-            byte[] fileBytes = _pdfService.exporter(newPath, fileName, sale);
+                string contentType = "application/pdf";
+                byte[] fileBytes = _pdfService.exporter(newPath, fileName, sale);
 
-            Response.Headers.Add("Content-Disposition", "attachment; filename=" + fileName); // Content-Disposition hlavička s nastavením přílohy
-            Response.Headers.Add("Content-Length", fileBytes.Length.ToString()); // Content-Length hlavička s délkou souboru v bajtech
-            Response.ContentType = contentType;
-            return File(fileBytes, contentType, fileName);
+                Response.Headers.Add("Content-Disposition", "attachment; filename=" + fileName); // Content-Disposition hlavička s nastavením přílohy
+                Response.Headers.Add("Content-Length", fileBytes.Length.ToString()); // Content-Length hlavička s délkou souboru v bajtech
+                Response.ContentType = contentType;
+                return File(fileBytes, contentType, fileName);
+            }
+            catch (Exception ex)
+            {
+                var errorMessage = "Došlo k chybě: soubor používá jiný proces";
+
+                TempData["ErrorMessage"] = errorMessage;
+                return RedirectToAction(nameof(Details), new { Id = sale.Id });
+            }
         }
 
         private IActionResult ExportExcel(string filePath, Sales sale)
         {
-            //var formFile = Request.Form.Files.GetFile("FilePathPDF");
             string fileName = "Customer_Excel.xlsx";
 
-            string newPath = _fileUpload.CopyFileForExport(Path.Combine("files", "sale", "excel"), fileName, filePath);
+            try
+            {
+                string newPath = _fileUpload.CopyFileForExport(Path.Combine("files", "sale", "excel"), fileName, filePath);
 
-            string contentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
-            byte[] fileBytes = _excelService.Exporter(newPath, sale);
+                string contentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+                byte[] fileBytes = _excelService.Exporter(newPath, sale);
 
-            Response.Headers.Add("Content-Disposition", "attachment; filename=" + fileName); // Content-Disposition hlavička s nastavením přílohy
-            Response.Headers.Add("Content-Length", fileBytes.Length.ToString()); // Content-Length hlavička s délkou souboru v bajtech
-            Response.ContentType = contentType;
-            return File(fileBytes, contentType, fileName);
+                Response.Headers.Add("Content-Disposition", "attachment; filename=" + fileName); // Content-Disposition hlavička s nastavením přílohy
+                Response.Headers.Add("Content-Length", fileBytes.Length.ToString()); // Content-Length hlavička s délkou souboru v bajtech
+                Response.ContentType = contentType;
+                return File(fileBytes, contentType, fileName);
+            }
+            catch (Exception ex)
+            {
+                var errorMessage = "Došlo k chybě: soubor používá jiný proces";
+
+                TempData["ErrorMessage"] = errorMessage;
+                return RedirectToAction(nameof(Details), new { Id = sale.Id });
+            }
         }
 
         private IActionResult ExportWord(string filePath, Sales sale)
         {
-            //var formFile = Request.Form.Files.GetFile("FilePathPDF");
             string fileName = "Customer_Word.docx";
 
-            string newPath = _fileUpload.CopyFileForExport(Path.Combine("files", "sale", "excel"), fileName, filePath);
+            try
+            {
+                string newPath = _fileUpload.CopyFileForExport(Path.Combine("files", "sale", "excel"), fileName, filePath);
 
-            string contentType = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
-            byte[] fileBytes = _templateSerivce.Exporter(newPath, sale);
+                string contentType = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
+                byte[] fileBytes = _templateSerivce.Exporter(newPath, sale);
 
-            Response.Headers.Add("Content-Disposition", "attachment; filename=" + fileName); // Content-Disposition hlavička s nastavením přílohy
-            Response.Headers.Add("Content-Length", fileBytes.Length.ToString()); // Content-Length hlavička s délkou souboru v bajtech
-            Response.ContentType = contentType;
-            return File(fileBytes, contentType, fileName);
+                Response.Headers.Add("Content-Disposition", "attachment; filename=" + fileName); // Content-Disposition hlavička s nastavením přílohy
+                Response.Headers.Add("Content-Length", fileBytes.Length.ToString()); // Content-Length hlavička s délkou souboru v bajtech
+                Response.ContentType = contentType;
+                return File(fileBytes, contentType, fileName);
+            }
+            catch (Exception ex)
+            {
+                var errorMessage = "Došlo k chybě: soubor používá jiný proces";
+
+                TempData["ErrorMessage"] = errorMessage;
+                return RedirectToAction(nameof(Details), new { Id = sale.Id });
+            }
         }
 
         public IActionResult Export(int fileId, int objectId)

@@ -38,25 +38,33 @@ namespace Bakalarska_prace.Services
         {
 
             byte[] documentBytes = null;
-            using (ExcelPackage package = new ExcelPackage(new FileInfo(excelPath)))
+            
+            try
             {
-
-                foreach (var sheetName in GetSheetNames(package))
+                using (ExcelPackage package = new ExcelPackage(new FileInfo(excelPath)))
                 {
-                    foreach (var workbook in package.Workbook.Names)
+
+                    foreach (var sheetName in GetSheetNames(package))
                     {
-                        if (sheetName.Equals(workbook.Worksheet.Name))
+                        foreach (var workbook in package.Workbook.Names)
                         {
-                            Console.WriteLine(workbook);
-                            Console.WriteLine(" (list " + workbook.Worksheet.Name + ")");
+                            if (sheetName.Equals(workbook.Worksheet.Name))
+                            {
+                                Console.WriteLine(workbook);
+                                Console.WriteLine(" (list " + workbook.Worksheet.Name + ")");
 
-                            workbook.Worksheet.Cells[workbook.Start.Row, workbook.Start.Column].Value = getValueByFieldName(workbook.ToString(), obj);
+                                workbook.Worksheet.Cells[workbook.Start.Row, workbook.Start.Column].Value = getValueByFieldName(workbook.ToString(), obj);
 
+                            }
                         }
                     }
+                    package.Save();
+                    package.Dispose();
                 }
-                package.Save();
-                package.Dispose();
+            }
+            catch (Exception ex)
+            {
+                throw;
             }
 
             documentBytes = File.ReadAllBytes(excelPath);

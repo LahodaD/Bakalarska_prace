@@ -17,7 +17,7 @@
             <thead>
                 <tr>
                     <th scope="col">File Name</th>
-                    <th scope="col">Path</th>
+                    <th scope="col">Type</th>
                     <th scope="col">Export</th>
                 </tr>
             </thead>
@@ -28,7 +28,24 @@
                     {
                         <tr>
                             <td>@files.NameFile</td>
-                            <td>@files.Path</td>
+                            <td>
+                                @{
+                                    string type = "";
+                                    if (files.Path.ToLower().EndsWith(".docx"))
+                                    {
+                                        type = "Word tamplate";
+                                    }
+                                    else if (files.Path.ToLower().EndsWith(".pdf"))
+                                    {
+                                        type = "PDF template";
+                                    }
+                                    else
+                                    {
+                                        type = "Excel template";
+                                    }
+                                }
+                                @type
+                            </td>
                             <td><a asp-action="Export" asp-controller="@ViewBag.objectController" asp-area="@ViewBag.objectArea" asp-route-objectId="@ViewBag.objectId" asp-route-fileId="@files.Id">Export</a></td>
                         </tr>
                     }

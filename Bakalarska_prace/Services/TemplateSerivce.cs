@@ -10,7 +10,7 @@ namespace Bakalarska_prace.Services
 {
     public class TemplateSerivce
     {
-        public readonly AutosalonDbContext _dbContext;
+        public readonly AutosalonDbContext _dbContext; //TODO: neni potreba
 
         public TemplateSerivce(AutosalonDbContext dbContext)
         {
@@ -60,7 +60,6 @@ namespace Bakalarska_prace.Services
                 var fieldCode = simpleFields.ElementAt(i).Instruction.Value;
                 if (fieldCode.Contains("MERGEFIELD"))
                 {
-                    //var fieldName = fieldCode.Split(new string[] { "MERGEFIELD", " ", "\\" }, StringSplitOptions.RemoveEmptyEntries)[1];
                     string fieldName = simpleFields.ElementAt(i).InnerText.Trim().Substring(1, simpleFields.ElementAt(i).InnerText.Trim().Length - 2);
                     string fieldValue = getValueByFieldName(fieldName, obj);
 
@@ -78,7 +77,6 @@ namespace Bakalarska_prace.Services
             
             foreach (var mergeField in mergeFields)
             {
-                //string fieldName = mergeField.InnerText.Replace(" MERGEFIELD ", "").Trim();
                 string fieldName;
 
                 if (LibreOffice(document).ToLower().Contains("LibreOffice".ToLower()))
@@ -163,21 +161,24 @@ namespace Bakalarska_prace.Services
 
             if (templatePath.EndsWith(".docx"))
             {
-                using (WordprocessingDocument document = WordprocessingDocument.Open(templatePath, true))
+                try
                 {
-                    documentBytes = WordLibreOfficeExporter(document, obj, templatePath);
+                    using (WordprocessingDocument document = WordprocessingDocument.Open(templatePath, true))
+                    {
+                        documentBytes = WordLibreOfficeExporter(document, obj, templatePath);
+                    }
+                }
+                catch(Exception ex)
+                {
+                    throw;
                 }
             }
 
             if (File.Exists(templatePath))
             {
                 File.Delete(templatePath);
-                // Soubor byl úspěšně smazán
             }
-
             return documentBytes;
         }
-
-
     }
 }

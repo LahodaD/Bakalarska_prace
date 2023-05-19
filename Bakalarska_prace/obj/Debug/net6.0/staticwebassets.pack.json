@@ -41,6 +41,10 @@
       "PackagePath": "staticwebassets\\js\\Bar.js"
     },
     {
+      "Id": "C:\\Users\\dlahoda\\Documents\\UTB\\BAKALARKA\\Bakalarska_prace\\Bakalarska_prace\\wwwroot\\js\\ErrorDialog.js",
+      "PackagePath": "staticwebassets\\js\\ErrorDialog.js"
+    },
+    {
       "Id": "C:\\Users\\dlahoda\\Documents\\UTB\\BAKALARKA\\Bakalarska_prace\\Bakalarska_prace\\wwwroot\\js\\Exporter.js",
       "PackagePath": "staticwebassets\\js\\Exporter.js"
     },

@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -46,17 +47,23 @@ namespace Bakalarska_prace.Domain.Implementation
             folderNameOnServer = Path.Combine(this.RootPath, folderNameOnServer);
             var fileRelative = Path.Combine(folderNameOnServer, fileName);
             Directory.CreateDirectory(folderNameOnServer);
-
-            using (FileStream sourceFileStream = new FileStream(pathFile, FileMode.Open))
+            try
             {
-                // Zkopírujte soubor na nové místo
-
-                using (FileStream destinationFileStream = new FileStream(fileRelative, FileMode.Create))
+                using (FileStream sourceFileStream = new FileStream(pathFile, FileMode.Open))
                 {
-                    sourceFileStream.CopyTo(destinationFileStream);
+                    // Zkopírujte soubor na nové místo
+
+                    using (FileStream destinationFileStream = new FileStream(fileRelative, FileMode.Create))
+                    {
+                        sourceFileStream.CopyTo(destinationFileStream);
+                    }
                 }
+                return fileRelative;
             }
-            return fileRelative;
+            catch (Exception ex)
+            {
+                throw;
+            }
         }
     }
 }

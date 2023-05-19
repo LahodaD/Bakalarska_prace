@@ -143,7 +143,7 @@ namespace Bakalarska_prace.Areas.Admin.Controllers
             return View(user);
         }
 
-        public async Task<IActionResult> Delete(int ID)
+        public IActionResult Delete(int ID)
         {
             var user = _context.Users.FirstOrDefault(f => f.Id == ID);
 

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "hHFfYInoTsHmIi3v0oNio3Srk+4I778kaXVQ5DnFSwU=",
+  "Hash": "Qdnh69St1WpfnG2I19zrQTNyvJfwfFVKb+xSiz6Pl2g=",
   "Source": "Bakalarska_prace",
   "BasePath": "_content/Bakalarska_prace",
   "Mode": "Default",
@@ -202,6 +202,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\Bar.js"
+    },
+    {
+      "Identity": "C:\\Users\\dlahoda\\Documents\\UTB\\BAKALARKA\\Bakalarska_prace\\Bakalarska_prace\\wwwroot\\js\\ErrorDialog.js",
+      "SourceId": "Bakalarska_prace",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\dlahoda\\Documents\\UTB\\BAKALARKA\\Bakalarska_prace\\Bakalarska_prace\\wwwroot\\",
+      "BasePath": "_content/Bakalarska_prace",
+      "RelativePath": "js/ErrorDialog.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\ErrorDialog.js"
     },
     {
       "Identity": "C:\\Users\\dlahoda\\Documents\\UTB\\BAKALARKA\\Bakalarska_prace\\Bakalarska_prace\\wwwroot\\js\\Exporter.js",

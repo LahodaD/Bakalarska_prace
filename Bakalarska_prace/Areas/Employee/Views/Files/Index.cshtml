@@ -17,7 +17,7 @@
             <thead>
                 <tr>
                     <th scope="col">File Name</th>
-                    <th scope="col">Path</th>
+                    <th scope="col">Type</th>
                     <th scope="col">Edit</th>
                     <th scope="col">Delete</th>
                 </tr>
@@ -29,7 +29,24 @@
                     {
                         <tr>
                             <td>@files.NameFile</td>
-                            <th scope="row">@files.Path</th>
+                            <td>
+                                @{
+                                    string type = "";
+                                    if (files.Path.ToLower().EndsWith(".docx"))
+                                    {
+                                        type = "Word tamplate";    
+                                    }
+                                    else if (files.Path.ToLower().EndsWith(".pdf"))
+                                    {
+                                        type = "PDF template";
+                                    }
+                                    else
+                                    {
+                                        type = "Excel template";
+                                    }
+                                }
+                                @type
+                            </td>
                             <td><a asp-action="Edit" asp-route-ID="@files.Id">Edit</a></td>
                             <td><a asp-action="Delete" asp-route-ID="@files.Id">Delete</a></td>
                         </tr>

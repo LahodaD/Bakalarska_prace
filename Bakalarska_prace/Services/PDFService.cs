@@ -34,30 +34,39 @@ namespace Bakalarska_prace.Services
         {
             byte[] documentBytes = null;
 
-            using (PdfReader reader = new PdfReader(filePath))
+            try
             {
-                using (PdfStamper stamper = new PdfStamper(reader, new FileStream(outputPath, FileMode.Create)))
+
+                using (PdfReader reader = new PdfReader(filePath))
                 {
-                    AcroFields fields = stamper.AcroFields;
-
-                    foreach (var field in fields.Fields)
+                    using (PdfStamper stamper = new PdfStamper(reader, new FileStream(outputPath, FileMode.Create)))
                     {
-                        fields.SetField(field.Key, getValueByFieldName(field.Key, obj));
+                        AcroFields fields = stamper.AcroFields;
 
-                        Console.WriteLine("Název pole: " + field.Key);
-                        Console.WriteLine("Typ pole: " + fields.GetFieldType(field.Key));
-                        Console.WriteLine("Popis pole: " + fields.GetField(field.Key));
+                        foreach (var field in fields.Fields)
+                        {
+                            fields.SetField(field.Key, getValueByFieldName(field.Key, obj));
+
+                            Console.WriteLine("Název pole: " + field.Key);
+                            Console.WriteLine("Typ pole: " + fields.GetFieldType(field.Key));
+                            Console.WriteLine("Popis pole: " + fields.GetField(field.Key));
+
+                        }
+                        stamper.Writer.SetEncryption(PdfWriter.STRENGTH128BITS, null, null, PdfWriter.ALLOW_PRINTING);
+
+                        stamper.Close();
 
                     }
-                    stamper.Writer.SetEncryption(PdfWriter.STRENGTH128BITS, null, null, PdfWriter.ALLOW_PRINTING);
-
-                    stamper.Close();
-
+                    reader.Close();
                 }
-                reader.Close();
-            }
 
-            documentBytes = File.ReadAllBytes(outputPath);
+                documentBytes = File.ReadAllBytes(outputPath);
+
+            }
+            catch(Exception ex)
+            {
+                throw;
+            }
 
             if (File.Exists(filePath) && File.Exists(outputPath))
             {

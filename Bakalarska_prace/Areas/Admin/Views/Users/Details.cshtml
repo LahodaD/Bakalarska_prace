@@ -115,3 +115,20 @@
     <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
     <a asp-action="Index">Back to List</a>
 </div>
+
+@section Scripts {
+    <script type="text/javascript">
+        function openErrorDialog(strMessage) {
+            var myDiv = document.getElementById('MyModalErrorAlert');
+            myDiv.innerHTML = strMessage;
+            $('#myModalError').modal('show');
+        }
+
+        $(document).ready(function () {
+            var msg = "@TempData["ErrorMessage"]";
+            if (msg) {
+                openErrorDialog(msg);
+            }
+        });
+    </script>
+}

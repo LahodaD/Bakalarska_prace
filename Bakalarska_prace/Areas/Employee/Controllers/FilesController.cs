@@ -5,7 +5,6 @@ using Bakalarska_prace.Models.Database;
 using Bakalarska_prace.Models.Entities;
 using Bakalarska_prace.Models.Identity;
 using Bakalarska_prace.Models.ViewModels;
-using DocumentFormat.OpenXml.Office2010.Excel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;

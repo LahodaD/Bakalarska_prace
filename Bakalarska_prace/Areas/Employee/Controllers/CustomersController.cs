@@ -121,7 +121,7 @@ namespace Bakalarska_prace.Areas.Employee.Controllers
             return View(customer);
         }
 
-        public async Task<IActionResult> Delete(int ID)
+        public IActionResult Delete(int ID)
         {
             var customer = _context.Customers.FirstOrDefault(f => f.Id == ID);
 
@@ -140,15 +140,26 @@ namespace Bakalarska_prace.Areas.Employee.Controllers
         {
             string fileName = "Customer_PDF.pdf";
 
-            string newPath = _fileUpload.CopyFileForExport(Path.Combine("files", "customer", "pdf"), fileName, filePath);
+            try
+            {
+                string newPath = _fileUpload.CopyFileForExport(Path.Combine("files", "customer", "pdf"), fileName, filePath);
 
-            string contentType = "application/pdf";
-            byte[] fileBytes = _pdfService.exporter(newPath, fileName, customer);
+                string contentType = "application/pdf";
+                byte[] fileBytes = _pdfService.exporter(newPath, fileName, customer);
 
-            Response.Headers.Add("Content-Disposition", "attachment; filename=" + fileName); // Content-Disposition hlavička s nastavením přílohy
-            Response.Headers.Add("Content-Length", fileBytes.Length.ToString()); // Content-Length hlavička s délkou souboru v bajtech
-            Response.ContentType = contentType;
-            return File(fileBytes, contentType, fileName);
+                Response.Headers.Add("Content-Disposition", "attachment; filename=" + fileName); // Content-Disposition hlavička s nastavením přílohy
+                Response.Headers.Add("Content-Length", fileBytes.Length.ToString()); // Content-Length hlavička s délkou souboru v bajtech
+                Response.ContentType = contentType;
+                return File(fileBytes, contentType, fileName);
+            }
+            catch (Exception ex)
+            {
+                var errorMessage = "Došlo k chybě: soubor používá jiný proces";
+
+                // Zde můžete přesměrovat na pohled s chybovou zprávou
+                TempData["ErrorMessage"] = errorMessage;
+                return RedirectToAction(nameof(Details), new { Id = customer.Id });
+            }
         }
 
         private IActionResult ExportExcel(string filePath, Customers customer)
@@ -156,15 +167,26 @@ namespace Bakalarska_prace.Areas.Employee.Controllers
             //var formFile = Request.Form.Files.GetFile("FilePathPDF");
             string fileName = "Customer_Excel.xlsx";
 
-            string newPath = _fileUpload.CopyFileForExport(Path.Combine("files", "customer", "excel"), fileName, filePath);
+            try
+            {
+                string newPath = _fileUpload.CopyFileForExport(Path.Combine("files", "customer", "excel"), fileName, filePath);
 
-            string contentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
-            byte[] fileBytes = _excelService.Exporter(newPath, customer);
+                string contentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+                byte[] fileBytes = _excelService.Exporter(newPath, customer);
 
-            Response.Headers.Add("Content-Disposition", "attachment; filename=" + fileName); // Content-Disposition hlavička s nastavením přílohy
-            Response.Headers.Add("Content-Length", fileBytes.Length.ToString()); // Content-Length hlavička s délkou souboru v bajtech
-            Response.ContentType = contentType;
-            return File(fileBytes, contentType, fileName);
+                Response.Headers.Add("Content-Disposition", "attachment; filename=" + fileName); // Content-Disposition hlavička s nastavením přílohy
+                Response.Headers.Add("Content-Length", fileBytes.Length.ToString()); // Content-Length hlavička s délkou souboru v bajtech
+                Response.ContentType = contentType;
+                return File(fileBytes, contentType, fileName);
+            }
+            catch (Exception ex)
+            {
+                var errorMessage = "Došlo k chybě: soubor používá jiný proces";
+
+                // Zde můžete přesměrovat na pohled s chybovou zprávou
+                TempData["ErrorMessage"] = errorMessage;
+                return RedirectToAction(nameof(Details), new { Id = customer.Id });
+            }
         }
 
         private IActionResult ExportWord(string filePath, Customers customer)
@@ -172,15 +194,26 @@ namespace Bakalarska_prace.Areas.Employee.Controllers
             //var formFile = Request.Form.Files.GetFile("FilePathPDF");
             string fileName = "Customer_Word.docx";
 
-            string newPath = _fileUpload.CopyFileForExport(Path.Combine("files", "customer", "excel"), fileName, filePath);
+            try
+            {
+                string newPath = _fileUpload.CopyFileForExport(Path.Combine("files", "customer", "excel"), fileName, filePath);
 
-            string contentType = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
-            byte[] fileBytes = _templateSerivce.Exporter(newPath, customer);
+                string contentType = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
+                byte[] fileBytes = _templateSerivce.Exporter(newPath, customer);
 
-            Response.Headers.Add("Content-Disposition", "attachment; filename=" + fileName); // Content-Disposition hlavička s nastavením přílohy
-            Response.Headers.Add("Content-Length", fileBytes.Length.ToString()); // Content-Length hlavička s délkou souboru v bajtech
-            Response.ContentType = contentType;
-            return File(fileBytes, contentType, fileName);
+                Response.Headers.Add("Content-Disposition", "attachment; filename=" + fileName); // Content-Disposition hlavička s nastavením přílohy
+                Response.Headers.Add("Content-Length", fileBytes.Length.ToString()); // Content-Length hlavička s délkou souboru v bajtech
+                Response.ContentType = contentType;
+                return File(fileBytes, contentType, fileName);
+            }
+            catch (Exception ex)
+            {
+                var errorMessage = "Došlo k chybě: soubor používá jiný proces";
+
+                // Zde můžete přesměrovat na pohled s chybovou zprávou
+                TempData["ErrorMessage"] = errorMessage;
+                return RedirectToAction(nameof(Details), new { Id = customer.Id });
+            }
         }
 
         public IActionResult Export(int fileId, int objectId)
