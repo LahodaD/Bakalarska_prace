@@ -4,17 +4,20 @@ using Bakalarska_prace.Models.Database;
 using Bakalarska_prace.Models.Entities;
 using Bakalarska_prace.Models.Identity;
 using Bakalarska_prace.Services;
+using DocumentFormat.OpenXml.Drawing.Charts;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 
 namespace Bakalarska_prace.Areas.Employee.Controllers
 {
     [Area("Employee")]
-    [Authorize(Roles = nameof(Roles.Customer))]
+    [Authorize(Roles = nameof(Roles.Employee))]
     public class SalesController : Controller
     {
         private readonly AutosalonDbContext _context;
-        private readonly TemplateSerivce _templateSerivce;
+        private readonly WordService _templateSerivce;
         private readonly ExcelService _excelService;
         private readonly PDFService _pdfService;
         private IFileUpload _fileUpload;
@@ -22,9 +25,9 @@ namespace Bakalarska_prace.Areas.Employee.Controllers
         public SalesController(AutosalonDbContext context, FileUpload fileUpload)
         {
             _context = context;
-            _templateSerivce = new TemplateSerivce(context);
+            _templateSerivce = new WordService();
             _fileUpload = fileUpload;
-            _excelService = new ExcelService(context);
+            _excelService = new ExcelService();
             _pdfService = new PDFService();
         }
 
@@ -50,15 +53,37 @@ namespace Bakalarska_prace.Areas.Employee.Controllers
             return View(sale);
         }
 
+        public IActionResult Delete(int ID)
+        {
+            var sale = _context.Sales.FirstOrDefault(f => f.Id == ID);
+
+            if (sale != null)
+            {
+                _context.Sales.Remove(sale);
+                _context.SaveChanges();
+
+                return RedirectToAction(nameof(Index));
+            }
+
+            return NotFound();
+        }
+
         public IActionResult Create()
         {
+            ViewData["User_id"] = new SelectList(_context.Users, "Id", "Id");
+            ViewData["Customers_id"] = new SelectList(_context.Customers, "Id", "Id");
+            ViewData["Cars_id"] = new SelectList(_context.Cars, "Id", "Id");
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,User_id,Customer_id,Cars_id,Sale_date,Price")] Sales sale)
+        public async Task<IActionResult> Create([Bind("Id,User_id,Customers_id,Cars_id,Price")] Sales sale)
         {
+
+            ModelState.Remove(nameof(Sales.User));
+            ModelState.Remove(nameof(Sales.Customers));
+            ModelState.Remove(nameof(Sales.Cars));
             if (ModelState.IsValid)
             {
                 _context.Add(sale);
@@ -66,6 +91,9 @@ namespace Bakalarska_prace.Areas.Employee.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
+            ViewData["User_id"] = new SelectList(_context.Users, "Id", "Id", sale.User_id);
+            ViewData["Customers_id"] = new SelectList(_context.Users, "Id", "Id", sale.Customers_id);
+            ViewData["Cars_id"] = new SelectList(_context.Users, "Id", "Id", sale.Cars_id);
             return View(sale);
         }
 

@@ -3,6 +3,7 @@ using System;
 using Bakalarska_prace.Models.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Bakalarska_prace.Migrations
 {
     [DbContext(typeof(AutosalonDbContext))]
-    partial class AutosalonDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230525032012_uprava_price_decimal")]
+    partial class uprava_price_decimal
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

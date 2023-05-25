@@ -12,11 +12,11 @@ using Microsoft.EntityFrameworkCore;
 namespace Bakalarska_prace.Areas.Employee.Controllers
 {
     [Area("Employee")]
-    [Authorize(Roles = nameof(Roles.Customer))]
+    [Authorize(Roles = nameof(Roles.Employee))]
     public class CarsController : Controller
     {
         private readonly AutosalonDbContext _context;
-        private readonly TemplateSerivce _templateSerivce;
+        private readonly WordService _templateSerivce;
         private readonly ExcelService _excelService;
         private readonly PDFService _pdfService;
         private IFileUpload _fileUpload;
@@ -24,9 +24,9 @@ namespace Bakalarska_prace.Areas.Employee.Controllers
         public CarsController(AutosalonDbContext context, FileUpload fileUpload)
         {
             _context = context;
-            _templateSerivce = new TemplateSerivce(context);
+            _templateSerivce = new WordService();
             _fileUpload = fileUpload;
-            _excelService = new ExcelService(context);
+            _excelService = new ExcelService();
             _pdfService = new PDFService();
         }
 
@@ -112,20 +112,17 @@ namespace Bakalarska_prace.Areas.Employee.Controllers
 
             var car = _context.Cars.FirstOrDefault(m => m.Id == id);
 
-            var fileViewModel = new FileViewModel();
-
             if (car == null)
             {
                 return NotFound();
             }
 
-            return View(Tuple.Create(car, fileViewModel));
+            return View(car);
         }
 
         private IActionResult ExportPDF(string filePath, Cars car)
         {
             string fileName = "Cars_PDF.pdf";
-
             try
             {
                 string newPath = _fileUpload.CopyFileForExport(Path.Combine("files", "cars", "pdf"), fileName, filePath);
@@ -150,7 +147,6 @@ namespace Bakalarska_prace.Areas.Employee.Controllers
         private IActionResult ExportExcel(string filePath, Cars car)
         {
             string fileName = "Cars_Excel.xlsx";
-
             try
             {
                 string newPath = _fileUpload.CopyFileForExport(Path.Combine("files", "cars", "excel"), fileName, filePath);
@@ -176,7 +172,6 @@ namespace Bakalarska_prace.Areas.Employee.Controllers
         private IActionResult ExportWord(string filePath, Cars car)
         {
             string fileName = "Cars_Word.docx";
-
             try
             {
                 string newPath = _fileUpload.CopyFileForExport(Path.Combine("files", "cars", "excel"), fileName, filePath);
@@ -221,6 +216,21 @@ namespace Bakalarska_prace.Areas.Employee.Controllers
                 return ExportExcel(file.Path, car);
             }
 
+        }
+
+        public IActionResult Delete(int ID)
+        {
+            var car = _context.Cars.FirstOrDefault(f => f.Id == ID);
+
+            if (car != null)
+            {
+                _context.Cars.Remove(car);
+                _context.SaveChanges();
+
+                return RedirectToAction(nameof(Index));
+            }
+
+            return NotFound();
         }
     }
 }

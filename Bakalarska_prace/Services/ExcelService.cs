@@ -6,13 +6,6 @@ namespace Bakalarska_prace.Services
 {
     public class ExcelService
     {
-        public readonly AutosalonDbContext _dbContex;
-
-        public ExcelService(AutosalonDbContext dbContex)
-        {
-            _dbContex = dbContex;
-        }
-
         public object getValueByFieldName(string cellName, Object obj)
         {
             FieldInfo[] fieldsInfo = obj.GetType().GetFields(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);

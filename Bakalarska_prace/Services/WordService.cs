@@ -1,6 +1,4 @@
 ﻿using Bakalarska_prace.Models.Database;
-using Bakalarska_prace.Models.Entities;
-using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
 using System.Reflection;
@@ -8,15 +6,8 @@ using System.Text.RegularExpressions;
 
 namespace Bakalarska_prace.Services
 {
-    public class TemplateSerivce
+    public class WordService
     {
-        public readonly AutosalonDbContext _dbContext; //TODO: neni potreba
-
-        public TemplateSerivce(AutosalonDbContext dbContext)
-        {
-            this._dbContext = dbContext;
-        }
-
         public string getValueByFieldName(string fieldName, Object obj)
         {
             FieldInfo[] fieldsInfo = obj.GetType().GetFields(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
@@ -43,7 +34,6 @@ namespace Bakalarska_prace.Services
             var fileProps = document.ExtendedFilePropertiesPart.Properties;
             return fileProps.Application.Text;   
         }
-
 
         public byte[] WordLibreOfficeExporter(WordprocessingDocument document, object obj, string filePath)
         {

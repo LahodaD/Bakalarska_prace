@@ -45,8 +45,8 @@ namespace Bakalarska_prace.Models.Database
             Role roleCustomer = new Role()
             {
                 Id = 3,
-                Name = "Customer",
-                NormalizedName = "CUSTOMER",
+                Name = "Employee",
+                NormalizedName = "EMPLOYEE",
                 ConcurrencyStamp = "29dafca7-cd20-4cd9-a3dd-4779d7bac3ee"
             };
 

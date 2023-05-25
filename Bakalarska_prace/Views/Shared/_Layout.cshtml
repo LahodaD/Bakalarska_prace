@@ -29,7 +29,7 @@
                         {
                             <a class="nav_link" asp-area="Admin" asp-controller="Users" asp-action="Index"> <i class='bx bx-user nav_icon'></i> <span class="nav_name">Users</span> </a>
                         }
-                        @if (User.Identity.IsAuthenticated == true && (User.IsInRole(Roles.Customer.ToString())))
+                        @if (User.Identity.IsAuthenticated == true && (User.IsInRole(Roles.Employee.ToString())))
                         {
                             <a class="nav_link" asp-area="Employee" asp-controller="Cars" asp-action="Index"> <i class='bx bx-message-square-detail nav_icon'></i> <span class="nav_name">Cars</span> </a>
                             <a class="nav_link" asp-area="Employee" asp-controller="Customers" asp-action="Index"> <i class='bx bx-bookmark nav_icon'></i> <span class="nav_name">Customers</span> </a>

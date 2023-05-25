@@ -7,7 +7,7 @@ using System.Diagnostics;
 
 namespace Bakalarska_prace.Controllers
 {
-    [Authorize(Roles = nameof(Roles.Admin) + ", " + nameof(Roles.Manager) + ", " + nameof(Roles.Customer))]
+    [Authorize(Roles = nameof(Roles.Admin) + ", " + nameof(Roles.Manager) + ", " + nameof(Roles.Employee))]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;

@@ -3,6 +3,7 @@ using System;
 using Bakalarska_prace.Models.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Bakalarska_prace.Migrations
 {
     [DbContext(typeof(AutosalonDbContext))]
-    partial class AutosalonDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230525011042_uprava_sales")]
+    partial class uprava_sales
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -36,8 +39,8 @@ namespace Bakalarska_prace.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(65,30)");
+                    b.Property<double>("Price")
+                        .HasColumnType("double");
 
                     b.Property<string>("VehicleBrand")
                         .IsRequired()
@@ -55,7 +58,7 @@ namespace Bakalarska_prace.Migrations
                             CreateYear = 2014,
                             Description = "Auto je v pořádku",
                             Model = "škoda",
-                            Price = 250000m,
+                            Price = 250000.0,
                             VehicleBrand = "BMH0342"
                         });
                 });
@@ -193,8 +196,8 @@ namespace Bakalarska_prace.Migrations
                         {
                             Id = 3,
                             ConcurrencyStamp = "29dafca7-cd20-4cd9-a3dd-4779d7bac3ee",
-                            Name = "Employee",
-                            NormalizedName = "EMPLOYEE"
+                            Name = "Customer",
+                            NormalizedName = "CUSTOMER"
                         });
                 });
 

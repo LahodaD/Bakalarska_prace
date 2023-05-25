@@ -1,4 +1,4 @@
-﻿@model Tuple<Cars, FileViewModel>
+﻿@model Cars
 
 @{
     ViewData["Title"] = "Details";
@@ -9,44 +9,44 @@
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Item1.VehicleBrand)
+            @Html.DisplayNameFor(model => model.VehicleBrand)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Item1.VehicleBrand)
+            @Html.DisplayFor(model => model.VehicleBrand)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Item1.Price)
+            @Html.DisplayNameFor(model => model.Price)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Item1.Price)
+            @Html.DisplayFor(model => model.Price)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Item1.Description)
+            @Html.DisplayNameFor(model => model.Description)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Item1.Description)
+            @Html.DisplayFor(model => model.Description)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Item1.Model)
+            @Html.DisplayNameFor(model => model.Model)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Item1.Model)
+            @Html.DisplayFor(model => model.Model)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Item1.CreateYear)
+            @Html.DisplayNameFor(model => model.CreateYear)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Item1.CreateYear)
+            @Html.DisplayFor(model => model.CreateYear)
         </dd>
     </dl>
 </div>
 <div>
-    <form asp-action="Select" asp-controller="Files" asp-area="Employee" asp-route-objectId="@Model.Item1.Id" asp-route-objectArea="Employee" asp-route-objectController="Cars" enctype="multipart/form-data">
+    <form asp-action="Select" asp-controller="Files" asp-area="Employee" asp-route-objectId="@Model.Id" asp-route-objectArea="Employee" asp-route-objectController="Cars" enctype="multipart/form-data">
         <button type="submit" class="btn btn-primary">Export To Template</button>
     </form>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.Item1.Id">Edit</a> |
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
     <a asp-action="Index">Back to List</a>
 </div>
 

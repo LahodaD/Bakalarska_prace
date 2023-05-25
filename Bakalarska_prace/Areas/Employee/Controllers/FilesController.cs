@@ -5,14 +5,16 @@ using Bakalarska_prace.Models.Database;
 using Bakalarska_prace.Models.Entities;
 using Bakalarska_prace.Models.Identity;
 using Bakalarska_prace.Models.ViewModels;
+using DocumentFormat.OpenXml.InkML;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 namespace Bakalarska_prace.Areas.Employee.Controllers
 {
     [Area("Employee")]
-    [Authorize(Roles = nameof(Roles.Customer))]
+    [Authorize(Roles = nameof(Roles.Employee))]
     public class FilesController : Controller
     {
         private readonly AutosalonDbContext _dbContext;
@@ -73,6 +75,7 @@ namespace Bakalarska_prace.Areas.Employee.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(FilesRequired filesRequired)
         {
             User currentUser = await iSecure.GetCurrentUser(User);

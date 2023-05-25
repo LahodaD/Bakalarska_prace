@@ -4,6 +4,6 @@
     {
         Admin,
         Manager,
-        Customer
+        Employee
     }
 }

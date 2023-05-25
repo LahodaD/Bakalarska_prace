@@ -10,8 +10,9 @@ namespace Bakalarska_prace.Models.Entities
         public int Id { get; set; }
 
         public int CreateYear { get; set; }
-        public double Price { get; set; }
-        
+        [DisplayFormat(DataFormatString = "{0:n2}", ApplyFormatInEditMode = true)]
+        public decimal Price { get; set; }
+
         [Required]
         [StringLength(56)]
         public string VehicleBrand { get; set; }

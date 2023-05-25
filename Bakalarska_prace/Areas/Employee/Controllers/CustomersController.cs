@@ -11,11 +11,11 @@ using Microsoft.EntityFrameworkCore;
 namespace Bakalarska_prace.Areas.Employee.Controllers
 {
     [Area("Employee")]
-    [Authorize(Roles = nameof(Roles.Customer))]
+    [Authorize(Roles = nameof(Roles.Employee))]
     public class CustomersController : Controller
     {
         private readonly AutosalonDbContext _context;
-        private readonly TemplateSerivce _templateSerivce;
+        private readonly WordService _templateSerivce;
         private readonly ExcelService _excelService;
         private readonly PDFService _pdfService;
         private IFileUpload _fileUpload;
@@ -23,9 +23,9 @@ namespace Bakalarska_prace.Areas.Employee.Controllers
         public CustomersController(AutosalonDbContext context, FileUpload fileUpload)
         {
             _context = context;
-            _templateSerivce = new TemplateSerivce(context);
+            _templateSerivce = new WordService();
             _fileUpload = fileUpload;
-            _excelService = new ExcelService(context);
+            _excelService = new ExcelService();
             _pdfService = new PDFService();
         }
 
@@ -183,7 +183,6 @@ namespace Bakalarska_prace.Areas.Employee.Controllers
             {
                 var errorMessage = "Došlo k chybě: soubor používá jiný proces";
 
-                // Zde můžete přesměrovat na pohled s chybovou zprávou
                 TempData["ErrorMessage"] = errorMessage;
                 return RedirectToAction(nameof(Details), new { Id = customer.Id });
             }
@@ -191,7 +190,6 @@ namespace Bakalarska_prace.Areas.Employee.Controllers
 
         private IActionResult ExportWord(string filePath, Customers customer)
         {
-            //var formFile = Request.Form.Files.GetFile("FilePathPDF");
             string fileName = "Customer_Word.docx";
 
             try
@@ -210,7 +208,6 @@ namespace Bakalarska_prace.Areas.Employee.Controllers
             {
                 var errorMessage = "Došlo k chybě: soubor používá jiný proces";
 
-                // Zde můžete přesměrovat na pohled s chybovou zprávou
                 TempData["ErrorMessage"] = errorMessage;
                 return RedirectToAction(nameof(Details), new { Id = customer.Id });
             }

@@ -8,6 +8,7 @@ using Bakalarska_prace.Models.ViewModels;
 using Bakalarska_prace.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 namespace Bakalarska_prace.Areas.Admin.Controllers
@@ -18,7 +19,7 @@ namespace Bakalarska_prace.Areas.Admin.Controllers
     {
         private readonly AutosalonDbContext _context;
         ISecurityApplicationService _securityService;
-        private readonly TemplateSerivce _templateSerivce;
+        private readonly WordService _templateSerivce;
         private readonly ExcelService _excelService;
         private readonly PDFService _pdfService;
         private IFileUpload _fileUpload;
@@ -27,9 +28,9 @@ namespace Bakalarska_prace.Areas.Admin.Controllers
         {
             _context = context;
             _securityService = securityService;
-            _templateSerivce = new TemplateSerivce(context);
+            _templateSerivce = new WordService();
             _fileUpload = fileUpload;
-            _excelService = new ExcelService(context);
+            _excelService = new ExcelService();
             _pdfService = new PDFService();
         }
 
@@ -40,6 +41,7 @@ namespace Bakalarska_prace.Areas.Admin.Controllers
 
         public IActionResult Create()
         {
+            ViewData["Role_id"] = new SelectList(_context.Roles, "Name", "Name");
             return View();
         }
 
@@ -50,6 +52,7 @@ namespace Bakalarska_prace.Areas.Admin.Controllers
             {
                 string[] errors = await _securityService.Register(registerVM, registerVM.Role);
             }
+            ViewData["Role_id"] = new SelectList(_context.Roles, "Name", "Name", registerVM.Role);
             return View(registerVM);
         }
 

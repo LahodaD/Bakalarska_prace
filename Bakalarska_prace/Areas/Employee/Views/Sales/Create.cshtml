@@ -14,26 +14,22 @@
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create" method="post" enctype="multipart/form-data">
-            <div asp-validation-summary="All" class="text-danger"></div>
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
             <div class="form-group">
                 <label asp-for="User_id" class="control-label"></label>
-                <input asp-for="User_id" class="form-control" />
+                <select asp-for="User_id" class="form-control" asp-items="ViewBag.User_id"></select>
                 <span asp-validation-for="User_id" class="text-danger"></span>
             </div>
-            <div class="form-group">
+             <div class="form-group">
                 <label asp-for="Customers_id" class="control-label"></label>
-                <input asp-for="Customers_id" class="form-control" />
+                <select asp-for="Customers_id" class="form-control" asp-items="ViewBag.Customers_id"></select>
                 <span asp-validation-for="Customers_id" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Cars_id" class="control-label"></label>
-                <input asp-for="Cars_id" class="form-control" />
+                <select asp-for="Cars_id" class="form-control" asp-items="ViewBag.Cars_id"></select>
                 <span asp-validation-for="Cars_id" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Sale_date" class="control-label"></label>
-                <input asp-for="Sale_date" class="form-control" type="date"/>
-                <span asp-validation-for="Sale_date" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Price" class="control-label"></label>
@@ -51,8 +47,3 @@
     <a asp-action="Index">Back to List</a>
 </div>
 
-@section Scripts
-    {
-    <partial name="_ValidationScriptsPartial" />
-    <script src="~/js/FileContentValidation.js"></script>
-}
